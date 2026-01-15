@@ -12,9 +12,11 @@ class AITermService:
         print(user_id)  # 지금은 별 의미가 없는 값
         index = self.get_today_index()
 
+        print("today index: ", index)
+
         return self.aiter_repository.get_term_by_id(index)
 
     def get_today_index(self):
         day_index = (date.today() - self.start_date).days
 
-        return day_index
+        return day_index % len(self.aiter_repository.term_list)
