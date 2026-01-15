@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no interactive-widget=resizes-content"
+    />
+    <title>AI Daily Terms - 오늘의 AI 용어</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --dark-bg: #0a0e27;
+        --card-bg: rgba(255, 255, 255, 0.98);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --text-primary: #1a1a2e;
+        --text-secondary: #6c7293;
+        --text-light: #ffffff;
+        --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+        --shadow-glow: 0 0 40px rgba(102, 126, 234, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Outfit", "Noto Sans KR", sans-serif;
+        background: var(--dark-bg);
+        color: var(--text-light);
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      /* Animated Background */
+      .bg-animation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(
+          125deg,
+          #0a0e27 0%,
+          #1a1a3e 50%,
+          #16213e 100%
+        );
+      }
+
+      .bg-animation::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(102, 126, 234, 0.1) 0%,
+          transparent 70%
+        );
+        animation: rotate 30s linear infinite;
+      }
+
+      .floating-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.5;
+        animation: float 20s infinite ease-in-out;
+      }
+
+      .orb1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        top: 10%;
+        left: -10%;
+        animation-delay: 0s;
+      }
+
+      .orb2 {
+        width: 250px;
+        height: 250px;
+        background: linear-gradient(135deg, #f093fb, #f5576c);
+        bottom: 10%;
+        right: -10%;
+        animation-delay: 5s;
+      }
+
+      .orb3 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, #4facfe, #00f2fe);
+        top: 50%;
+        left: 50%;
+        animation-delay: 10s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(30px, -50px) scale(1.1);
+        }
+        50% {
+          transform: translate(-20px, 30px) scale(0.9);
+        }
+        75% {
+          transform: translate(40px, 20px) scale(1.05);
+        }
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Container */
+      .container {
+        position: relative;
+        z-index: 1;
+        padding: 20px;
+        max-width: 450px;
+        margin: 0 auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Header */
+      .app-header {
+        text-align: center;
+        margin-bottom: 20px;
+        animation: slideDown 0.6s ease-out;
+      }
+
+      .app-title {
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 5px;
+      }
+
+      .app-subtitle {
+        font-size: 24px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.5px;
+      }
+
+      /* Navigation Tabs */
+      .nav-tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 25px;
+        padding: 5px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+        animation: slideUp 0.6s ease-out 0.1s both;
+      }
+
+      .nav-tab {
+        flex: 1;
+        padding: 12px 8px;
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-tab::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--primary-gradient);
+        opacity: 0;
+        transition: opacity 0.3s;
+        border-radius: 12px;
+      }
+
+      .nav-tab.active {
+        color: var(--text-light);
+        background: var(--primary-gradient);
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .nav-tab:not(.active):hover {
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Main Card */
+      .card {
+        background: var(--card-bg);
+        border-radius: 28px;
+        padding: 35px 25px;
+        min-height: 500px;
+        box-shadow: var(--shadow-xl);
+        position: relative;
+        overflow: hidden;
+        animation: scaleIn 0.6s ease-out 0.2s both;
+        display: none;
+      }
+
+      .card.active {
+        display: block;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: var(--primary-gradient);
+        border-radius: 28px;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.3s;
+      }
+
+      .card:hover::before {
+        opacity: 0.1;
+      }
+
+      /* View 1 - Interactive Circle */
+      .view1-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+      }
+
+      .card-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-primary);
+        text-align: center;
+        margin-bottom: 50px;
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      .interactive-circle {
+        width: 200px;
+        height: 200px;
+        background: var(--primary-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        animation: pulse 2s infinite;
+      }
+
+      .interactive-circle:hover {
+        transform: scale(1.1);
+        box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
+      }
+
+      .interactive-circle:active {
+        transform: scale(0.95);
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4);
+        }
+        50% {
+          box-shadow: 0 10px 60px rgba(102, 126, 234, 0.6);
+        }
+      }
+
+      .circle-content {
+        text-align: center;
+        color: white;
+      }
+
+      .circle-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+        animation: bounce 2s infinite;
+      }
+
+      .circle-text {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* View 2 - Feature Cards */
+      .view2-content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .feature-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 20px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(102, 126, 234, 0.1),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .feature-card:hover {
+        transform: translateX(8px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-color: rgba(102, 126, 234, 0.3);
+      }
+
+      .feature-card:hover::before {
+        left: 100%;
+      }
+
+      .feature-icon {
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .feature-text {
+        flex: 1;
+      }
+
+      .feature-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+        font-family: "Noto Sans KR", sans-serif;
+      }
+
+      .feature-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.4;
+      }
+
+      .explore-btn {
+        width: 100%;
+        padding: 18px;
+        margin-top: 20px;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        border: none;
+        border-radius: 16px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 6px 20px rgba(79, 172, 254, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .explore-btn::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .explore-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+      }
+
+      .explore-btn:active::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      /* View 3 - PDF Viewer */
+      .view3-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+        text-align: center;
+      }
+
+      .pdf-container {
+        width: 100%;
+        max-width: 320px;
+        aspect-ratio: 3/4;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .pdf-icon {
+        font-size: 80px;
+        background: var(--secondary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 20px;
+        animation: float 3s infinite ease-in-out;
+      }
+
+      .pdf-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+      }
+
+      .pdf-subtitle {
+        font-size: 14px;
+        color: var(--text-secondary);
+        margin-bottom: 30px;
+      }
+
+      .pdf-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .pdf-btn {
+        padding: 12px 24px;
+        background: white;
+        border: 2px solid rgba(102, 126, 234, 0.2);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .pdf-btn.primary {
+        background: var(--primary-gradient);
+        border: none;
+        color: white;
+      }
+
+      .pdf-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Animations */
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Modal */
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+      }
+
+      .modal.active {
+        display: flex;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 24px;
+        padding: 30px;
+        max-width: 400px;
+        width: 100%;
+        position: relative;
+        animation: modalSlideUp 0.3s ease-out;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      @keyframes modalSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .modal-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .modal-close {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.05);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: all 0.2s;
+      }
+
+      .modal-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+        transform: rotate(90deg);
+      }
+
+      .modal-body {
+        color: var(--text-primary);
+      }
+
+      .term-image {
+        width: 100%;
+        height: 150px;
+        background: var(--accent-gradient);
+        border-radius: 16px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+      }
+
+      .term-keywords {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 15px 0;
+      }
+
+      .keyword-tag {
+        padding: 6px 12px;
+        background: rgba(102, 126, 234, 0.1);
+        border-radius: 20px;
+        font-size: 13px;
+        color: #667eea;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .keyword-tag:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .term-description {
+        line-height: 1.6;
+        color: var(--text-secondary);
+        margin-top: 15px;
+      }
+
+      /* Responsive */
+      @media (max-width: 480px) {
+        .container {
+          padding: 15px;
+        }
+
+        .card {
+          padding: 25px 20px;
+        }
+
+        .card-title {
+          font-size: 24px;
+        }
+
+        .interactive-circle {
+          width: 170px;
+          height: 170px;
+        }
+
+        .circle-icon {
+          font-size: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+      <div class="floating-orb orb1"></div>
+      <div class="floating-orb orb2"></div>
+      <div class="floating-orb orb3"></div>
+    </div>
+
+    <div class="container">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="app-title">AI Daily Terms</div>
+        <div class="app-subtitle">오늘의 AI 용어</div>
+      </header>
+
+      <!-- Navigation -->
+      <nav class="nav-tabs">
+        <button class="nav-tab active" onclick="switchView(1)">
+          ✨ Discover
+        </button>
+        <!-- <button class="nav-tab" onclick="switchView(2)">📚 Learn</button>
+        <button class="nav-tab" onclick="switchView(3)">📄 Docs</button> -->
+      </nav>
+
+      <!-- View 1 - Interactive Discovery -->
+      <div id="view1" class="card active">
+        <div class="view1-content">
+          <h1 class="card-title">오늘의 AI 용어</h1>
+          <div class="interactive-circle" onclick="showTermDetail('discover')">
+            <div class="circle-content">
+              <div class="circle-icon">🧠</div>
+              <div class="circle-text">터치해서<br />발견하기</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View 2 - Learning Cards -->
+      <div id="view2" class="card">
+        <h1 class="card-title">학습하기</h1>
+        <div class="view2-content">
+          <div class="feature-card" onclick="showTermDetail('visual')">
+            <div class="feature-icon">🎨</div>
+            <div class="feature-text">
+              <div class="feature-title">시각적 이해</div>
+              <div class="feature-desc">이미지와 다이어그램으로 쉽게 이해</div>
+            </div>
+          </div>
+
+          <div class="feature-card" onclick="showTermDetail('term')">
+            <div class="feature-icon">💡</div>
+            <div class="feature-text">
+              <div class="feature-title">핵심 용어</div>
+              <div class="feature-desc">오늘의 AI 용어와 정의</div>
+            </div>
+          </div>
+
+          <div class="feature-card" onclick="showTermDetail('keywords')">
+            <div class="feature-icon">🔑</div>
+            <div class="feature-text">
+              <div class="feature-title">키워드 탐색</div>
+              <div class="feature-desc">관련 핵심 키워드와 개념</div>
+            </div>
+          </div>
+
+          <div class="feature-card" onclick="showTermDetail('explanation')">
+            <div class="feature-icon">📖</div>
+            <div class="feature-text">
+              <div class="feature-title">상세 설명</div>
+              <div class="feature-desc">깊이 있는 이해를 위한 설명</div>
+            </div>
+          </div>
+
+          <button class="explore-btn" onclick="showTermDetail('all')">
+            🚀 전체 내용 탐색하기
+          </button>
+        </div>
+      </div>
+
+      <!-- View 3 - PDF Documentation -->
+      <div id="view3" class="card">
+        <h1 class="card-title">문서 보기</h1>
+        <div class="view3-content">
+          <div class="pdf-container">
+            <div class="pdf-icon">📑</div>
+            <div class="pdf-title">PDF 문서</div>
+            <div class="pdf-subtitle">상세 학습 자료</div>
+            <div class="pdf-actions">
+              <button class="pdf-btn" onclick="viewPDF()">미리보기</button>
+              <button class="pdf-btn primary" onclick="downloadPDF()">
+                다운로드
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <span id="modal-icon">🤖</span>
+            <span id="modal-title-text">제목</span>
+          </h2>
+          <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <!-- Content will be injected here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Sample AI Terms Data
+      const aiTerms = {
+        today: {
+          term: "Transformer",
+          emoji: "🤖",
+          visualEmoji: "🎨",
+          keywords: [
+            "자연어처리",
+            "어텐션",
+            "BERT",
+            "GPT",
+            "인코더-디코더",
+            "셀프어텐션",
+          ],
+          description:
+            "Transformer는 2017년 'Attention is All You Need' 논문에서 소개된 혁신적인 딥러닝 아키텍처입니다.",
+          detailedExplanation: `
+                    <h3 style="margin-bottom: 15px; color: #667eea;">🔍 핵심 개념</h3>
+                    <p style="margin-bottom: 15px;">Transformer는 순환 신경망(RNN)이나 합성곱 신경망(CNN) 없이 순전히 어텐션 메커니즘만을 사용하여 시퀀스 데이터를 처리합니다.</p>
+                    
+                    <h3 style="margin-bottom: 15px; color: #667eea;">⚙️ 주요 구성 요소</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">✅ <strong>Multi-Head Attention</strong>: 여러 관점에서 정보를 병렬 처리</li>
+                        <li style="margin-bottom: 10px;">✅ <strong>Positional Encoding</strong>: 시퀀스 내 위치 정보 제공</li>
+                        <li style="margin-bottom: 10px;">✅ <strong>Feed-Forward Networks</strong>: 각 위치에서 독립적으로 적용</li>
+                    </ul>
+                    
+                    <h3 style="margin-bottom: 15px; color: #667eea;">🚀 활용 분야</h3>
+                    <p>BERT, GPT, T5 등 현재 대부분의 최신 언어 모델들이 Transformer 아키텍처를 기반으로 합니다. 번역, 요약, 질의응답, 텍스트 생성 등 다양한 NLP 작업에서 뛰어난 성능을 보입니다.</p>
+                `,
+        },
+      };
+
+      function switchView(viewNumber) {
+        // Hide all cards
+        document.querySelectorAll(".card").forEach((card) => {
+          card.classList.remove("active");
+        });
+
+        // Show selected card
+        setTimeout(() => {
+          document.getElementById(`view${viewNumber}`).classList.add("active");
+        }, 50);
+
+        // Update nav tabs
+        document.querySelectorAll(".nav-tab").forEach((tab, index) => {
+          if (index === viewNumber - 1) {
+            tab.classList.add("active");
+          } else {
+            tab.classList.remove("active");
+          }
+        });
+      }
+
+      async function showTermDetail(type) {
+        const response = await fetch(
+          "http://172.30.1.72:8000/api/ai-term/today"
+        );
+        const data = await response.json();
+
+        const term = {
+          term: data.term,
+          emoji: "🤖",
+          visualEmoji: "🎨",
+          keywords: data.keyword,
+          description: data.summary,
+          fileName: data.fileName,
+          //   detailedExplanation: `
+          //             <h3 style="margin-bottom: 15px; color: #667eea;">🔍 핵심 개념</h3>
+          //             <p style="margin-bottom: 15px;">Transformer는 순환 신경망(RNN)이나 합성곱 신경망(CNN) 없이 순전히 어텐션 메커니즘만을 사용하여 시퀀스 데이터를 처리합니다.</p>
+
+          //             <h3 style="margin-bottom: 15px; color: #667eea;">⚙️ 주요 구성 요소</h3>
+          //             <ul style="list-style: none; padding: 0;">
+          //                 <li style="margin-bottom: 10px;">✅ <strong>Multi-Head Attention</strong>: 여러 관점에서 정보를 병렬 처리</li>
+          //                 <li style="margin-bottom: 10px;">✅ <strong>Positional Encoding</strong>: 시퀀스 내 위치 정보 제공</li>
+          //                 <li style="margin-bottom: 10px;">✅ <strong>Feed-Forward Networks</strong>: 각 위치에서 독립적으로 적용</li>
+          //             </ul>
+
+          //             <h3 style="margin-bottom: 15px; color: #667eea;">🚀 활용 분야</h3>
+          //             <p>BERT, GPT, T5 등 현재 대부분의 최신 언어 모델들이 Transformer 아키텍처를 기반으로 합니다. 번역, 요약, 질의응답, 텍스트 생성 등 다양한 NLP 작업에서 뛰어난 성능을 보입니다.</p>
+          //         `,
+        };
+        const modal = document.getElementById("modal");
+        const modalBody = document.getElementById("modal-body");
+        const modalTitleText = document.getElementById("modal-title-text");
+        const modalIcon = document.getElementById("modal-icon");
+
+        let content = "";
+        let title = "";
+        let icon = term.emoji;
+
+        switch (type) {
+          case "discover":
+          case "all":
+            title = term.term;
+            content = `
+                        <div class="term-image">${term.emoji}</div>
+                        <div class="term-keywords">
+                            ${term.keywords
+                              .map(
+                                (k) => `<span class="keyword-tag">
+                                    <a href="https://www.google.com/search?q=${k}"
+                                        style="text-decoration: none; color: inherit;"
+                                     target="_blank">
+                                        ${k}
+                                    </a>
+                                    </span>`
+                              )
+                              .join("")}
+                        </div>
+                        ${term.description}
+                        <div style="display: flex; justify-content: center; margin-top: 20px;">
+                        <div class="pdf-actions">
+                            <a class="pdf-btn" 
+                            style="text-decoration: none; color: inherit;"
+                            href="http://172.30.1.72:8000/api/preview/pdf?file_name=${
+                              term.fileName
+                            }" target="_blank">자세히 보기</a>
+                        </div>
+                        </div>
+                    `;
+            break;
+
+          case "visual":
+            title = "시각적 이해";
+            icon = term.visualEmoji;
+            content = `
+                        <div class="term-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            ${term.emoji}
+                        </div>
+                        <p class="term-description">
+                            Transformer 아키텍처는 입력 시퀀스의 각 요소가 다른 모든 요소와 직접 상호작용할 수 있도록 합니다.
+                            이를 통해 장거리 의존성을 효과적으로 포착합니다.
+                        </p>
+                    `;
+            break;
+
+          case "term":
+            title = `오늘의 용어: ${term.term}`;
+            content = `
+                        <div class="term-image" style="font-size: 80px;">${term.emoji}</div>
+                        <h3 style="color: #667eea; margin-bottom: 10px;">${term.term}</h3>
+                        <p class="term-description">${term.description}</p>
+                    `;
+            break;
+
+          case "keywords":
+            title = "핵심 키워드";
+            icon = "🔑";
+            content = `
+                        <div class="term-keywords" style="margin-top: 0;">
+                            ${term.keywords
+                              .map(
+                                (k) =>
+                                  `<span class="keyword-tag" style="font-size: 15px; padding: 10px 16px;">${k}</span>`
+                              )
+                              .join("")}
+                        </div>
+                        <p class="term-description" style="margin-top: 20px;">
+                            이러한 키워드들은 Transformer를 이해하는 데 필수적인 개념들입니다.
+                            각 키워드는 서로 연결되어 전체 아키텍처를 구성합니다.
+                        </p>
+                    `;
+            break;
+
+          case "explanation":
+            title = "상세 설명";
+            icon = "📖";
+            content = term.detailedExplanation;
+            break;
+        }
+
+        modalTitleText.textContent = title;
+        modalIcon.textContent = icon;
+        modalBody.innerHTML = content;
+        modal.classList.add("active");
+      }
+
+      function closeModal() {
+        document.getElementById("modal").classList.remove("active");
+      }
+
+      function viewPDF() {
+        showTermDetail("all");
+      }
+
+      function downloadPDF() {
+        alert(
+          "📥 PDF 다운로드가 시작됩니다!\n\n실제 구현 시 PDF 생성 및 다운로드 기능이 추가됩니다."
+        );
+      }
+
+      // Close modal when clicking outside
+      document.getElementById("modal").addEventListener("click", (e) => {
+        if (e.target.id === "modal") {
+          closeModal();
+        }
+      });
+
+      // Add touch feedback for mobile
+      document
+        .querySelectorAll("button, .interactive-circle, .feature-card")
+        .forEach((elem) => {
+          elem.addEventListener("touchstart", function () {
+            this.style.transform = "scale(0.95)";
+          });
+          elem.addEventListener("touchend", function () {
+            this.style.transform = "";
+          });
+        });
+    </script>
+  </body>
+</html>
